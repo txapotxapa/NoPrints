@@ -249,6 +249,7 @@ class NoPrints(rumps.App):
             for idx, item in enumerate(recent_items, 1):
                 icon = item.get('icon', '📋')
                 display = item.get('display_text', item['text'][:30])
+                is_sensitive = item.get('is_sensitive', False)
                 
                 # Add number shortcut hint
                 if idx <= 9:
@@ -256,11 +257,33 @@ class NoPrints(rumps.App):
                 else:
                     menu_text = f"{icon} {display}"
                 
-                menu_item = rumps.MenuItem(
-                    menu_text,
-                    callback=lambda _, i=item: self.paste_from_history(i)
-                )
-                self.recent_menu.add(menu_item)
+                # For sensitive items, create submenu with reveal option
+                if is_sensitive and display != item['text'][:30]:
+                    parent_item = rumps.MenuItem(menu_text)
+                    
+                    # Main paste action
+                    paste_item = rumps.MenuItem(
+                        "📋 Paste",
+                        callback=lambda _, i=item: self.paste_from_history(i)
+                    )
+                    parent_item.add(paste_item)
+                    
+                    # Reveal full content option
+                    full_text = item['text'][:50] + ('...' if len(item['text']) > 50 else '')
+                    reveal_item = rumps.MenuItem(
+                        f"👁 Show: {full_text}",
+                        callback=lambda _, i=item: self.paste_from_history(i)
+                    )
+                    parent_item.add(reveal_item)
+                    
+                    self.recent_menu.add(parent_item)
+                else:
+                    # Regular menu item for non-sensitive content
+                    menu_item = rumps.MenuItem(
+                        menu_text,
+                        callback=lambda _, i=item: self.paste_from_history(i)
+                    )
+                    self.recent_menu.add(menu_item)
     
     def update_bitcoin_menu(self):
         """Update Bitcoin items submenu"""
@@ -295,12 +318,28 @@ class NoPrints(rumps.App):
                 self.bitcoin_menu.add(rumps.MenuItem(f"— Addresses ({len(addresses)}) —", callback=None))
                 for item in addresses[:5]:
                     addr = item['metadata']['security_analysis']['bitcoin']['addresses'][0]
-                    display = f"₿ {addr['type']}: {addr['value'][:10]}..."
-                    menu_item = rumps.MenuItem(
-                        display,
+                    addr_value = addr['value']
+                    addr_type = addr['type']
+                    display = f"₿ {addr_type}: {addr_value[:6]}...{addr_value[-4:]}"
+                    
+                    # Create submenu for Bitcoin address with reveal option
+                    parent_item = rumps.MenuItem(display)
+                    
+                    # Main paste action
+                    paste_item = rumps.MenuItem(
+                        "📋 Paste Address",
                         callback=lambda _, i=item: self.paste_from_history(i)
                     )
-                    self.bitcoin_menu.add(menu_item)
+                    parent_item.add(paste_item)
+                    
+                    # Reveal full address option
+                    reveal_item = rumps.MenuItem(
+                        f"👁 Full: {addr_value}",
+                        callback=lambda _, i=item: self.paste_from_history(i)
+                    )
+                    parent_item.add(reveal_item)
+                    
+                    self.bitcoin_menu.add(parent_item)
             
             if lightning:
                 self.bitcoin_menu.add(rumps.separator)
@@ -357,12 +396,27 @@ class NoPrints(rumps.App):
                 for item in public_keys[:5]:
                     key_info = item['metadata']['security_analysis']['nostr']['public_keys'][0]
                     key_type = key_info['type']
-                    display = f"👤 {key_type}: {key_info['value'][:12]}..."
-                    menu_item = rumps.MenuItem(
-                        display,
+                    key_value = key_info['value']
+                    display = f"👤 {key_type}: {key_value[:12]}..."
+                    
+                    # Create submenu for Nostr key with reveal option
+                    parent_item = rumps.MenuItem(display)
+                    
+                    # Main paste action
+                    paste_item = rumps.MenuItem(
+                        "📋 Paste Key",
                         callback=lambda _, i=item: self.paste_from_history(i)
                     )
-                    self.nostr_menu.add(menu_item)
+                    parent_item.add(paste_item)
+                    
+                    # Reveal full key option
+                    reveal_item = rumps.MenuItem(
+                        f"👁 Full: {key_value}",
+                        callback=lambda _, i=item: self.paste_from_history(i)
+                    )
+                    parent_item.add(reveal_item)
+                    
+                    self.nostr_menu.add(parent_item)
             
             if notes:
                 if public_keys:
