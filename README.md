@@ -1,13 +1,14 @@
 # NoPrints
 
-**Advanced clipboard manager for macOS with Bitcoin and Nostr security protection**
+**Advanced clipboard manager for macOS with Bitcoin security protection**
 
 [![Security Status](https://img.shields.io/badge/Security-Audited-green)](COMPREHENSIVE_SECURITY_AUDIT_2025.md)
+[![Bitcoin Only](https://img.shields.io/badge/Bitcoin-Only-orange)]()
 [![Version](https://img.shields.io/badge/Version-3.1-blue)]()
 [![macOS](https://img.shields.io/badge/macOS-10.14+-lightgrey)]()
 [![License](https://img.shields.io/badge/License-MIT-blue)]()
 
-NoPrints eliminates hidden Unicode characters from your clipboard while providing comprehensive security for Bitcoin and Nostr protocol data. No more invisible characters, no more accidentally leaked private keys.
+NoPrints eliminates hidden Unicode characters from your clipboard while providing comprehensive security for Bitcoin and Nostr data. Built with Bitcoin maximalist principles - Bitcoin is the only money that matters, and Nostr aligns with Bitcoin's decentralized ethos. No more invisible characters, no more accidentally leaked private keys.
 
 ## ✨ Features
 
@@ -18,8 +19,8 @@ NoPrints eliminates hidden Unicode characters from your clipboard while providin
 - **Smart Cleaning** - Preserves legitimate formatting while removing hidden chars
 
 ### 🛡️ Security Protection
-- **Bitcoin Security** - Detects and protects addresses, private keys, seed phrases
-- **Nostr Protocol** - Comprehensive support for nsec keys, npub keys, events, relays
+- **Bitcoin Security** - Detects and protects addresses, private keys, seed phrases, Lightning invoices
+- **Nostr Protocol** - Comprehensive support for keys, events, and relays (aligned with Bitcoin principles)
 - **Password Protection** - Auto-expires sensitive authentication data
 - **Risk-based Expiration** - Critical data expires in 10s, sensitive in 60s
 - **Visual Warnings** - Clear indicators for different security levels
@@ -41,13 +42,13 @@ NoPrints eliminates hidden Unicode characters from your clipboard while providin
 | Content Type | Detection | Protection | Expiry |
 |--------------|-----------|------------|--------|
 | **Bitcoin Private Keys** | ✅ Auto | 🚨 Hidden | 10s |
-| **Nostr Private Keys (nsec)** | ✅ Auto | 🚨 Hidden | 10s |
 | **Bitcoin Addresses** | ✅ Auto | 🔒 Blurred | 30s |
+| **Bitcoin Seed Phrases** | ✅ Auto | 🚨 Hidden | 10s |
+| **Lightning Invoices** | ✅ Auto | 🔒 Blurred | 30s |
+| **Nostr Private Keys (nsec)** | ✅ Auto | 🚨 Hidden | 10s |
 | **Nostr Public Keys** | ✅ Auto | 🔒 Abbreviated | 60s |
-| **Seed Phrases** | ✅ Auto | 🚨 Hidden | 10s |
 | **Passwords** | ✅ Pattern | 🔒 Auto-expire | 60s |
 | **API Keys** | ✅ Multi-service | 🔒 Auto-expire | 120s |
-| **Credit Cards** | ✅ Luhn validation | 🔒 Auto-expire | 30s |
 
 ## 🚀 Installation
 
@@ -234,13 +235,15 @@ MIT License - see LICENSE file for details.
 
 ## 🛡️ Security Notice
 
-This tool is designed for legitimate clipboard management and security purposes. Users are responsible for:
+This tool is designed for legitimate clipboard management and security purposes. Built with Bitcoin maximalist principles. Users are responsible for:
 - Compliance with local laws and regulations
-- Following cryptocurrency security best practices  
+- Following Bitcoin security best practices (Bitcoin is the only sound money)
 - Proper handling of sensitive authentication data
 - Regular security updates and monitoring
 
-**Warning**: While NoPrints provides strong protection, always follow best practices for handling cryptocurrencies and sensitive information.
+**Bitcoin Maximalist Philosophy**: This application recognizes Bitcoin as the only legitimate monetary network. Nostr support is included because it aligns with Bitcoin's principles of decentralization, censorship resistance, and self-sovereignty.
+
+**Warning**: While NoPrints provides strong protection, always follow best practices for handling Bitcoin and sensitive information.
 
 ## 📞 Support
 
@@ -251,6 +254,6 @@ This tool is designed for legitimate clipboard management and security purposes.
 
 ---
 
-**NoPrints v3.1** - Protecting your clipboard, securing your data, eliminating hidden characters.
+**NoPrints v3.1** - Protecting your Bitcoin, securing your clipboard, eliminating hidden characters.
 
-Built for macOS with ❤️ and 🔒
+Built for macOS Bitcoin maximalists with ₿ and 🔒
