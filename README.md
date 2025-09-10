@@ -8,6 +8,17 @@
 
 Eliminates hidden Unicode characters and protects Bitcoin/Nostr data from clipboard theft.
 
+## Why I Built This
+
+I promise you're pasting hidden Unicode characters from ChatGPT and Claude. These invisible characters will give you away when someone checks if you used AI.
+
+But that's not the only problem - I've almost posted my Nostr nsec multiple times. One wrong paste and your Bitcoin keys could be exposed.
+
+NoPrints solves both:
+- **Strips hidden Unicode** - No more AI detection from invisible characters
+- **Auto-expires sensitive data** - Bitcoin addresses vanish in 30s, private keys hidden immediately  
+- **One-click panic button** - Clear everything instantly when needed
+
 ## Features
 
 - 🧹 **Removes hidden Unicode** - No more invisible characters
