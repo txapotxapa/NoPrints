@@ -733,10 +733,11 @@ class NoPrints(rumps.App):
                             'timestamp': time.time()
                         })
                         
-                        # Update counts
-                        if security_analysis['bitcoin']:
+                        # Update counts - check if actual content was detected
+                        bitcoin_data = security_analysis.get('bitcoin', {})
+                        if bitcoin_data and any(bitcoin_data.get(k) for k in ['addresses', 'private_keys', 'seed_phrases', 'lightning']):
                             self.bitcoin_detected_count += 1
-                        if security_analysis['passwords']:
+                        if security_analysis.get('passwords'):
                             self.passwords_detected_count += 1
                         
                         # Show notifications
@@ -756,8 +757,9 @@ class NoPrints(rumps.App):
                                     sound=False
                                 )
                         
-                        # Count Nostr detections
-                        if security_analysis['nostr']:
+                        # Count Nostr detections - check if actual content was detected
+                        nostr_data = security_analysis.get('nostr', {})
+                        if nostr_data and any(nostr_data.get(k) for k in ['public_keys', 'private_keys', 'notes', 'events', 'relays']):
                             self.nostr_detected_count = getattr(self, 'nostr_detected_count', 0) + 1
                         
                         # Update UI
