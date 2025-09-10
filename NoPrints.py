@@ -138,6 +138,11 @@ class NoPrints(rumps.App):
             callback=self.clear_sensitive_data
         )
         
+        clear_all = rumps.MenuItem(
+            "🗑️ Clear All (Clipboard + History)",
+            callback=self.clear_all_data
+        )
+        
         # Statistics
         self.stats_item = rumps.MenuItem(
             f"📊 Stats: {self.cleaned_count} cleaned",
@@ -167,6 +172,7 @@ class NoPrints(rumps.App):
             rumps.separator,
             show_history,
             clear_sensitive,
+            clear_all,
             rumps.separator,
             settings_menu,
             self.advanced_menu,
@@ -567,6 +573,39 @@ class NoPrints(rumps.App):
                 "Security",
                 "",
                 "Sensitive data cleared",
+                sound=False
+            )
+    
+    def clear_all_data(self, sender):
+        """Clear system clipboard, all history, and reset stats"""
+        # Clear system clipboard
+        self.set_clipboard_content("")
+        
+        # Clear all clipboard history
+        self.history.clear_all()
+        
+        # Reset all statistics
+        self.cleaned_count = 0
+        self.bitcoin_detected_count = 0
+        self.passwords_detected_count = 0
+        if hasattr(self, 'nostr_detected_count'):
+            self.nostr_detected_count = 0
+        
+        # Update all UI components
+        self.update_recent_menu()
+        self.update_bitcoin_menu()
+        self.update_nostr_menu()
+        self.update_security_status()
+        self.update_icon()
+        
+        # Update stats display
+        self.stats_item.title = "📊 Stats: 0 cleaned, 0 Bitcoin, 0 Nostr"
+        
+        if self.defaults.boolForKey_("ShowNotifications"):
+            rumps.notification(
+                "NoPrints",
+                "",
+                "🗑️ All data cleared: clipboard, history & stats reset",
                 sound=False
             )
     

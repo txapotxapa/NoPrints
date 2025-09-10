@@ -201,6 +201,13 @@ class ClipboardHistory:
         self.sensitive_items.clear()
         self.save_history()
     
+    def clear_all(self):
+        """Clear all clipboard history and reset everything"""
+        self.history.clear()
+        self.sensitive_items.clear()
+        self.pinned_items.clear()
+        self.save_history()
+    
     def clear_expired(self):
         """Remove expired items"""
         current_time = time.time()
