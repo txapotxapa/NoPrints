@@ -1,0 +1,13 @@
+#!/bin/bash
+# Get the directory where this script is located
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+BASE_DIR="$DIR/../../../"
+
+# Change to the base directory
+cd "$BASE_DIR"
+
+# Set Python path
+export PYTHONPATH="$BASE_DIR:$PYTHONPATH"
+
+# Launch the application
+/usr/bin/python3 NoPrints.py

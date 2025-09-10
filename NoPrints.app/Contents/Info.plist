@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>NoPrints</string>
+    <key>CFBundleDisplayName</key>
+    <string>NoPrints</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.local.noprints</string>
+    <key>CFBundleVersion</key>
+    <string>3.1</string>
+    <key>CFBundleShortVersionString</key>
+    <string>3.1</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleSignature</key>
+    <string>CBMP</string>
+    <key>CFBundleExecutable</key>
+    <string>NoPrints</string>
+    <key>LSUIElement</key>
+    <true/>
+    <key>LSBackgroundOnly</key>
+    <false/>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSAppleEventsUsageDescription</key>
+    <string>NoPrints needs access to monitor clipboard changes and provide smart paste functionality.</string>
+    <key>NSSystemAdministrationUsageDescription</key>
+    <string>Used to detect active applications for smart paste formatting.</string>
+</dict>
+</plist>
